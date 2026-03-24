@@ -1,0 +1,2 @@
+sample <- runif(100)
+unifTestKS(sample)
