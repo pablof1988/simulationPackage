@@ -12,6 +12,11 @@ Authors@R: c(
     "Ligia", "Huebla",
     email = "ligia.huebla@espoch.edu.ec",
     role = "ctb"
+    ),
+    person(
+    "Aracelly", "Escudero",
+    email = "lisbeth.escudero@espoch.edu.ec",
+    role = "ctb"
     )
   )
 Description: This package is designed to implement the different models studied in the Simulation subject from the ESPOCH - Statistic carrer. The main idea is to create an environmet of joint collaboration between the teacher and his students.
