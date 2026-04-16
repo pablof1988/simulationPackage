@@ -1,0 +1,55 @@
+#' @title Binomial Pseudorandom Number Generator
+#'
+#' @description
+#' Generates pseudorandom numbers from a binomial distribution using the
+#' inverse transform method based on uniform pseudorandom numbers.
+#'
+#' @param n Integer. Number of pseudorandom values to generate.
+#' @param m Integer. Number of trials (size parameter of the binomial distribution).
+#' @param p Numeric. Probability of success on each trial (must be between 0 and 1).
+#'
+#' @details
+#' The function implements the *inverse transform method* to generate binomial
+#' pseudorandom numbers. The algorithm proceeds as follows:
+#' \enumerate{
+#'   \item Computes the probability mass function \eqn{f(x)} for \eqn{x = 0, 1, \dots, m}
+#'         using \code{dbinom(x, size = m, prob = p)}.
+#'   \item Calculates the cumulative distribution function \eqn{F(x) = \sum_{i=0}^{x} f(i)}.
+#'   \item Generates \eqn{n} uniform pseudorandom numbers \eqn{u_i} using \code{unifr(n)}.
+#'   \item For each \eqn{u_i}, finds the smallest \eqn{x} such that \eqn{F(x) \ge u_i}
+#'         via \code{findInterval()}.
+#' }
+#'
+#' The generated values follow a binomial distribution with parameters \eqn{m} (trials)
+#' and \eqn{p} (success probability).
+#'
+#' @return
+#' An integer vector of length \code{n} containing pseudorandom numbers from the
+#' binomial distribution \code{Bin(m, p)}. The vector has an attribute \code{"fx"}
+#' containing the probability mass function values for \eqn{x = 0, \dots, m}.
+#'
+#' @examples
+#' # Generate 10 binomial random numbers with m = 5 trials and p = 0.7
+#' binomr(10, 5, 0.7)
+#'
+#' # Generate 1000 values and compare with theoretical distribution
+#' set.seed(123)
+#' x <- binomr(1000, 10, 0.3)
+#' hist(x, breaks = seq(-0.5, 10.5, by = 1), freq = FALSE,
+#'      main = "Binomial(10, 0.3)")
+#' lines(0:10, attr(x, "fx"), type = "h", col = "red", lwd = 2)
+#'
+#' @seealso
+#' \code{\link{unifr}} for the uniform pseudorandom number generator,
+#' \code{\link{dbinom}} for the binomial density function,
+#' \code{\link{rbinom}} for the built-in binomial random generator in R.
+#'
+#' @export
+binomr <- function(n, m, p){
+  fx <- dbinom(x = 0:m, size = m, prob = p)
+  Fx <- cumsum(fx)
+  u <- unifr(n)
+  res <- findInterval(u, Fx)
+  attr(res, "fx") <- fx
+  res
+}
