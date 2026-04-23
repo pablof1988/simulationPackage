@@ -3,6 +3,7 @@
 export(binomr)
 export(congGenerator)
 export(middleSquare)
+export(normaprox)
 export(period)
 export(unif)
 export(unifTestChisq)
