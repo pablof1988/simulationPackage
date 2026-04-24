@@ -13,7 +13,8 @@
 #' \deqn{X = a + U \times (b - a)}
 #' where \eqn{U \sim \text{Uniform}(0,1)}.
 #'
-#' @return
+#' @return A numeric vector of length \code{n} containing pseudorandom numbers
+#' uniformly distributed on the interval \eqn{(a, b)}.
 #'
 #' @examples
 #' # Generate 5 uniform numbers between 0 and 10

@@ -13,6 +13,10 @@ unif(n, a, b)
 
 \item{b}{Numeric. Upper bound of the uniform distribution.}
 }
+\value{
+A numeric vector of length \code{n} containing pseudorandom numbers
+uniformly distributed on the interval \eqn{(a, b)}.
+}
 \description{
 Generates pseudorandom numbers from a uniform distribution on the interval (a, b).
 }
