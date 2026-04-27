@@ -3,6 +3,7 @@
 export(binomr)
 export(chiaprox)
 export(congGenerator)
+export(geom)
 export(middleSquare)
 export(normaprox)
 export(period)
